@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>冒冒定时器</title>
+</head>
+
+<body>
+<audio id="alarm" src="alarm.mp3"></audio>
+<fieldset>
+    <legend>放置提醒</legend>
+    <input type="number" id="intv" value="120">秒
+    <input type="button" id="start" value="开始">
+    <input type="button" id="stop" value="停止" disabled="true">
+</fieldset>
+<fieldset>
+    <legend>道具提醒</legend>
+    <input type="button" id="m10" value="10分钟">
+    <input type="button" id="m15" value="15分钟">
+    <input type="button" id="m20" value="20分钟">
+    <input type="button" id="m30" value="30分钟">
+    <input type="button" id="m60" value="60分钟">
+</fieldset>
+</body>
+<script>
+  Notification.requestPermission();
+  let alarm = document.getElementById('alarm');
+  let hTotem = 0;
+  document.getElementById('start').onclick = _ => {
+    document.getElementById('start').disabled = true;
+    document.getElementById('stop').disabled = false;
+    hTotem = setInterval(() => {
+      alarm.play();
+      new Notification('放置提醒', {
+        body: '放置时间到了！'
+      });
+    }, Number.parseInt(document.getElementById('intv').value) * 1000);
+  };
+  document.getElementById('stop').onclick = _ => {
+    document.getElementById('start').disabled = false;
+    document.getElementById('stop').disabled = true;
+    clearInterval(hTotem);
+  };
+  document.getElementById('m10').onclick = _ => {
+    setTimeout(_ => {
+      alarm.play();
+      new Notification('道具提醒', {
+        body: '10分钟道具已经到期！'
+      });
+    }, 600000);
+    new Notification('提醒已设置', {
+      body: '10分钟后将会提醒！'
+    });
+  };
+  document.getElementById('m15').onclick = _ => {
+    setTimeout(_ => {
+      alarm.play();
+      new Notification('道具提醒', {
+        body: '15分钟道具已经到期！'
+      });
+    }, 900000);
+    new Notification('提醒已设置', {
+      body: '15分钟后将会提醒！'
+    });
+  };
+  document.getElementById('m20').onclick = _ => {
+    setTimeout(_ => {
+      alarm.play();
+      new Notification('道具提醒', {
+        body: '20分钟道具已经到期！'
+      });
+    }, 1200000);
+    new Notification('提醒已设置', {
+      body: '20分钟后将会提醒！'
+    });
+  };
+  document.getElementById('m30').onclick = _ => {
+    setTimeout(_ => {
+      alarm.play();
+      new Notification('道具提醒', {
+        body: '30分钟道具已经到期！'
+      });
+    }, 1800000);
+    new Notification('提醒已设置', {
+      body: '30分钟后将会提醒！'
+    });
+  };
+  document.getElementById('m60').onclick = _ => {
+    setTimeout(_ => {
+      alarm.play();
+      new Notification('道具提醒', {
+        body: '60分钟道具已经到期！'
+      });
+    }, 3600000);
+    new Notification('提醒已设置', {
+      body: '60分钟后将会提醒！'
+    });
+  };
+</script>
+
+</html>

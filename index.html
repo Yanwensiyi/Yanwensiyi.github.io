@@ -1,66 +1,7 @@
-<html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <title>严文思逸的米奇妙妙屋♂</title>
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body>
-<canvas id="can"></canvas>
-</body>
-<script>
-  "use strict";
-  /**
-   * @type {ImageBitmap}
-   */
-  let img = null;
-  /**
-   * @type {HTMLCanvasElement}
-   */
-  let can = document.getElementById('can');
-  let ctx = can.getContext('2d');
-  can.width = window.innerWidth;
-  can.height = window.innerHeight;
-  /**
-   * @type {number}
-   */
-  let s = 300, x = 0, y = 0, w, h, vx = Math.floor(s * Math.random() % (s + 1)),
-      vy = Math.floor(Math.sqrt(s ** 2 - vx ** 2)),
-      FPS = 100;
-  console.log(`vx:${vx} vy:${vy}`);
-  window.onresize = ev => {
-    can.width = window.innerWidth;
-    can.height = window.innerHeight;
-  };
-  fetch('assets/img/xjj.png').then(async r => {
-    img = await createImageBitmap(await r.blob());
-    w = img.width;
-    h = img.height;
-    setInterval(move, 1000 / FPS);
-  }).catch(err => {
-    console.log(err);
-  });
-
-  function move() {
-    let skip = false;
-    if (x + w + vx / FPS > can.width || x + vx / FPS < 0) {
-      vx = -vx;
-      skip = true;
-    }
-    if (y + h + vy / FPS > can.height || y + vy / FPS < 0) {
-      vy = -vy;
-      skip = true;
-    }
-    if (skip) return;
-    ctx.clearRect(x - vx / FPS, y - vy / FPS, w + 10, h + 10);
-    x += vx / FPS;
-    y += vy / FPS;
-    ctx.drawImage(img, x, y);
-  }
-</script>
+<!DOCTYPE html>
+<html>
+    <script>
+        window.open('timer.html', '_blank', 'titlebar=no,height=150,width=380,menubar=no,toolbar:no,personalbar:no,status:no,scrollbars=no');
+        //window.close();
+    </script>
 </html>
